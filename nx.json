@@ -20,5 +20,8 @@
   },
   "workspaceLayout": {
     "projectNameAndRootFormat": "as-provided"
+  },
+  "cli": {
+    "packageManager": "pnpm"
   }
 }

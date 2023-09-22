@@ -2,15 +2,39 @@
   "name": "e-signal",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
-  "private": true,
-  "dependencies": {},
-  "devDependencies": {
-    "@nx/js": "16.8.1",
-    "nx": "16.8.1",
-    "nx-cloud": "latest"
+  "scripts": {
+    "commit": "git-cz",
+    "preinstall": "npx only-allow pnpm"
   },
-  "workspaces": [
-    "packages/*"
-  ]
+  "private": true,
+  "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-angular": "^17.7.0",
+    "@nx/js": "16.8.1",
+    "git-cz": "^4.9.0",
+    "husky": "^8.0.3",
+    "nx": "16.8.1",
+    "nx-cloud": "latest",
+    "standard-version": "^9.5.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "**/!(images)/**/*.{ts,js,html}": [
+      "eslint --fix --quiet",
+      "git add"
+    ],
+    "*.{js,json,css,scss,ts,html,component.html}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+    }
+  }
 }
